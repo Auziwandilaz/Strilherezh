@@ -1,9 +1,16 @@
+"use client"
+
 // import Logo from "@/../public/svg/Strilherezh_logo.svg";
 import clsx from "clsx";
 import { AccountIcon } from "../../design-system/svg/AccountIcon";
 import { ShoppingCart } from "../../design-system/svg/ShoppingCart";
 import { StrilherezhLogo } from "../../design-system/svg/StrilherezhLogo";
 import { Typography } from "../../design-system/typography/Typography";
+import { useNavigate } from "react-router-dom";
+
+
+
+
 
 export const Header = ({}) => {
   const typoStyle = "font-extralight tracking-wider text-[16px] max-sm:hidden";

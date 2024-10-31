@@ -1,5 +1,4 @@
-"use client";
-
+    
 import clsx from "clsx";
 import { ArrowIcon } from "../../design-system/svg/ArrowIcon";
 import { Button } from "../../design-system/button/Button";
@@ -38,6 +37,7 @@ export const MenuBurgerItem = ({
                     </a>
                     <Button
                     variant="icon"
+                    className="w-[50px] h-[50px]"
                     >
                         <ArrowIcon></ArrowIcon>
                     </Button>
@@ -60,6 +60,7 @@ export const MenuBurgerItem = ({
                     </a>
                     <Button
                     variant="icon"
+                    className="w-[50px] h-[50px]"
                     >
                         <ArrowIcon></ArrowIcon>
                     </Button>

@@ -2,7 +2,7 @@ import { clsx } from "clsx";
 import { Children } from "react";
 
 interface Props {
-  variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "span" | "a";
+  variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "span" | "a" | "p-small";
   color?: "white" | "black" | "gray" | "lightgray" | "gold";
   font?: "outfit" | "quicksand";
   className?: string;
@@ -82,6 +82,18 @@ export const Typography = ({
         <p
           className={clsx(
             `text-[16px]`,
+            className,
+            `text-${color} font-${font}`
+          )}
+        >
+          {children}
+        </p>
+      );
+    case "p-small":
+      return (
+        <p
+          className={clsx(
+            `text-[14px]`,
             className,
             `text-${color} font-${font}`
           )}
