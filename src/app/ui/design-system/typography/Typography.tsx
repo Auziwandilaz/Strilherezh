@@ -1,7 +1,8 @@
 import { clsx } from "clsx";
+import { Children } from "react";
 
 interface Props {
-  variant?: "h1" | "h2" | "h3" | "h4" | "p" | "span";
+  variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "span" | "a";
   color?: "white" | "black" | "gray" | "lightgray" | "gold";
   font?: "outfit" | "quicksand";
   className?: string;
@@ -64,6 +65,18 @@ export const Typography = ({
           {children}
         </h4>
       );
+      case "h5": 
+        return (
+          <h5 
+          className={clsx(
+            `font-${font} font-normal text-[25px] tracking-widest`,
+            className,
+            `text-${color}`
+          )}
+          >
+            {children}
+          </h5>
+        )
     case "p":
       return (
         <p
