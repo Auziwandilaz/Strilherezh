@@ -21,7 +21,7 @@ export const Typography = ({
       return (
         <h1
           className={clsx(
-            `font-${font} font-light text-[80px] tracking-widest`,
+            `font-${font} font-light h1-clamp tracking-widest`,
             className,
             `text-${color}`
           )}
@@ -81,7 +81,7 @@ export const Typography = ({
       return (
         <p
           className={clsx(
-            `text-[16px]`,
+            `text-[1rem]`,
             className,
             `text-${color} font-${font}`
           )}
@@ -93,7 +93,7 @@ export const Typography = ({
       return (
         <p
           className={clsx(
-            `text-[14px]`,
+            `text-[0.875rem]`,
             className,
             `text-${color} font-${font}`
           )}

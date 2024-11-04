@@ -5,6 +5,7 @@ import { HeaderStrilherezh } from "../header/HeaderStrilherezh";
 import { ArrowIcon } from "../../design-system/svg/ArrowIcon";
 import { Button } from "../../design-system/button/Button";
 import { Typography } from "../../design-system/typography/Typography";
+import { HeroBanner } from "../heroBanner/HeroBanner";
 import { Footer } from "../footer/Footer";
 
 export default function AccountPage () {
@@ -13,26 +14,12 @@ export default function AccountPage () {
     return (
         <main className="">
         <Header></Header>
-        <section className="w-full height-clamp--banner_account relative flex align-middle justify-center flex-col">
-            <div
-            className="flex flex-row align-middle absolute inset-7 "
-            >
-                <ArrowIcon></ArrowIcon>
-                <Typography
-                variant="p-small"
-                className="text-white font-quicksand"
-                >
-                    Skornenn / Votre compte
-                </Typography>
-            </div>
-            <Typography 
-            variant="h1"
-            className="capitalize text-white font-outfit text-center">
-                mon compte
-            </Typography>
-        </section>
+        <HeroBanner
+        variant="profil"
+        className=""
+        ></HeroBanner>
         <div>
-
+            
         </div>
         <Footer></Footer>
         </main>
