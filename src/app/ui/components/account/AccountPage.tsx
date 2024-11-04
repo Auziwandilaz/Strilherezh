@@ -15,11 +15,11 @@ export default function AccountPage () {
         <main className="">
         <Header></Header>
         <HeroBanner
-        variant="profil"
+        variant="account"
         className=""
         ></HeroBanner>
         <div>
-            
+        
         </div>
         <Footer></Footer>
         </main>

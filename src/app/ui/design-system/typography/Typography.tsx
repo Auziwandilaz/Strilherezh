@@ -33,7 +33,7 @@ export const Typography = ({
       return (
         <h2
           className={clsx(
-            `font-${font} font-light text-[40px] tracking-widest`,
+            `font-${font} font-light h2-clamp tracking-widest`,
             className,
             `text-${color}`
           )}
