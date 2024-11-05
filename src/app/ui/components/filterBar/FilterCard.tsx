@@ -1,33 +1,57 @@
 import clsx from "clsx";
 import { Typography } from "../../design-system/typography/Typography";
-import { title } from "process";
 
 interface Props { 
+    list?: any;
+    title?: string;
+    round?: boolean
     className?: string;
 }
 
-function Item({array, title, round}: {array: [], title: string, round: boolean}) {
-    if (array) {
-        return (
-            array.map(name => {
+
+export const FilterCard = ({
+    list, 
+    title, 
+    round = false,
+    className,
+}:Props) => {
+    return (
+        <form action="/filter" method="post" className="flex flex-col gap-[1.25rem] items-top justify-between h-fit w-fit px-[3.125rem]">
                 <label>
-                    <input 
-                    type={clsx(round ? "radio" : "checkbox")} 
-                    name={clsx(`${title}`)} 
-                    value={clsx(`${name}`)}
-                    />
-                    {name}
+                    <Typography
+                    variant="p"
+                    color="black"
+                    font="outfit"
+                    className="font-medium"
+                    >
+                        {title}
+                    </Typography>
                 </label>
-            })
-        );
-    }
-}
-
-
-export const FilterCard = ({className, title}:Props) => {
-    <form action="/filter" method="post">
-            <p>
-
-            </p>
-    </form>
+                {list.map(content => (
+                    <p className="flex items-center justify-between w-fit h-fit">
+                        <input 
+                        type={clsx(round ? "radio" : "checkbox")} 
+                        name={clsx(`${title}`)} 
+                        value=""
+                        className={clsx(
+                            round ? 
+                            "text-gold w-[14px] h-[14px] border-px border-solid border-black rounded-[14px] bg-transparent focus:ring-gold focus:ring-2"
+                            :
+                            "w-[14px] h-[14px] border-px border solid border-black bg-transparent text-white focus:bg-gold"
+                        )}
+                        />
+                        <label>
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className="font-extralight"
+                            >
+                                {content}
+                            </Typography>
+                        </label>
+                    </p>
+                ))}
+        </form>
+    );
 }
