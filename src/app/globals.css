@@ -31,6 +31,16 @@ a:hover {
 }
 
 
+.filter-bar-after {
+  &::after{
+    content: "|";
+    width: 1px;
+    height: 100%;
+    margin-left: 0.62rem;
+    margin-right: 0.62rem;
+  }
+}
+
 .category-card {
   position: relative;
 }

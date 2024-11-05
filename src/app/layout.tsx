@@ -1,27 +1,39 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+"use client"
+
+import "./globals.css";
+// importing components from react-router-dom package
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+} from "react-router-dom";
+
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import AllProduct from "./ui/components/allProducts/AllProducts";
+import Home from "./page";
 
-export const metadata: Metadata = {
-  title: "Strilherezh",
-  description: "....",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children?: React.ReactNode;
-}>) {
-  return (
-    <html>
-      <head>
-        <title>Strilherezh</title>
-      </head>
-      <body>
-        <main>{children}</main>
-      </body>
-    </html>
-  );
+function App() {
+    return (
+        <html>
+          <body>
+              <Router>
+                <Routes>
+                    <Route
+                        exact
+                        path="/" //route to homepage
+                        element={<Home />}
+                    />
+                    <Route
+                        path="/allproducts" //route to all products page
+                        element={<AllProduct />}
+                    />
+                </Routes>
+            </Router>
+          </body>
+        </html>
+    );
 }
+
+export default App;

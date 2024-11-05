@@ -19,16 +19,16 @@ export const FilterBar = ({
     switch (variant) {
         case "closed":
         return (
-            <div className="bg-white h-fit w-full py-[3.125rem] px-[3.125rem] flex flex-row jusify-between items-center"
+            <div className="bg-white h-fit w-full py-[1.25rem] px-[3.125rem]  flex flex-row justify-between items-center border-y border-lightgray"
             >
                 <div
                 className="flex flex-row items-center justify-between gap-[2.81rem] w-fit h-fit">
-                    <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit">
                         <Typography 
                         variant="p"
                         color="gray"
                         font="outfit"
-                        className="after: content-[''] after: h-5/6 w-px bg-gray "
+                        className="filter-bar-after"
                         >
                             Trier par
                         </Typography>
@@ -42,14 +42,33 @@ export const FilterBar = ({
                         </Typography>
                         <ArrowDown></ArrowDown>
                     </div>
-                    <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit">
                         <Typography 
                         variant="p"
                         color="gray"
                         font="outfit"
-                        className="after: content-[''] after: h-5/6 w-px bg-gray "
+                        className="filter-bar-after"
                         >
                             Contenant
+                        </Typography>
+                        <Typography
+                        variant="p"
+                        color="black"
+                        font="outfit"
+                        className="font-medium"
+                        >
+                            Tout
+                        </Typography>
+                        <ArrowDown></ArrowDown>
+                    </div>
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="filter-bar-after"
+                        >
+                            Volume
                         </Typography>
                         <Typography
                         variant="p"
@@ -67,7 +86,7 @@ export const FilterBar = ({
                         variant="p"
                         color="gray"
                         font="outfit"
-                        className="after: content-[''] after: h-5/6 w-px bg-gray "
+                        className="w-fit filter-bar-after"
                         >
                             16 Résultat(s) Trouvé(s)
                         </Typography>
@@ -211,7 +230,7 @@ export const FilterBar = ({
 
         case "contenant":
         return (
-            <div className="bg-white h-fit w-full flex flex-col items-center justify-center">
+            <div className="bg-white h-fit w-full flex flex-col items-center justify-center p-0">
                 <div className="bg-white h-fit w-full py-[3.125rem] px-[3.125rem] flex flex-row jusify-between items-center border-y border-lightgray"
                 >
                     <div
@@ -337,7 +356,7 @@ export const FilterBar = ({
 
         case "volume":
         return (
-            <div className="bg-white h-fit w-full flex flex-col items-center justify-center">
+            <div className="bg-white h-fit w-full flex flex-col items-center justify-center p-0">
                 <div className="bg-white h-fit w-full py-[3.125rem] px-[3.125rem] flex flex-row jusify-between items-center border-y border-lightgray"
                 >
                     <div

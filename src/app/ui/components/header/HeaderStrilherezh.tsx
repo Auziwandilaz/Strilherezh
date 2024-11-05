@@ -1,11 +1,19 @@
+"use client"
+
 import clsx from "clsx";
+import { Link } from "react-router-dom";
 import { StrilherezhLogo } from "../../design-system/svg/StrilherezhLogo";
 import { Typography } from "../../design-system/typography/Typography";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+
 
 export const HeaderStrilherezh = ({}) => {
   const typoStyle = "font-extralight";
   const underlineAnimationWhite =
     "bg-left-bottom bg-gradient-to-r from-white to-white bg-[length:0%_1px] bg-no-repeat group-hover:bg-[length:100%_1px] transition-all duration-300 ease-out";
+
 
   return (
     <header className="h-[60px] bg-gold flex justify-between px-10 items-center max-sm:h-[50px] max-md:px-5 sticky top-0 z-20">
@@ -16,14 +24,17 @@ export const HeaderStrilherezh = ({}) => {
         />
       </div>
       <div className="flex gap-6 items-center max-sm:gap-3 max-xs:gap-2">
-        <button className="group text-white transition-all duration-300 ease-in-out">
-          <Typography
-            font="outfit"
-            color="white"
-            className={clsx(typoStyle, "max-sm:text-[14px]", underlineAnimationWhite)}
-          >
-            Tous nos produits
-          </Typography>
+        <button className="group text-white transition-all duration-300 ease-in-out"
+        >
+          <Link to="/allproducts">
+            <Typography
+              font="outfit"
+              color="white"
+              className={clsx(typoStyle, "max-sm:text-[14px]", underlineAnimationWhite)}
+            >
+              Tous nos produits
+            </Typography>
+          </Link>
         </button>
         <button className="group text-white transition-all duration-300 ease-in-out">
           <Typography

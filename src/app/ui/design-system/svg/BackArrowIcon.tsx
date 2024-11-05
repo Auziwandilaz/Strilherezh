@@ -20,8 +20,8 @@ export const BackArrowIcon = ({ className = "", empty = true }: Props) => {
                 fill="#F4F4F4"
             />
             <path
-                fill-rule="evenodd" 
-                clip-rule="evenodd"
+                fillRule="evenodd" 
+                clipRule="evenodd"
                 d="M6.93933 12.0321L7.47237 12.5598L10.4724 15.5294L11.5276 14.4634L9.82375 12.7767H16V11.2767H9.79786L11.533 9.52406L10.467 8.46875L7.46701 11.4991L6.93933 12.0321Z"
                 fill="#AAAAAA"
             />

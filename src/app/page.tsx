@@ -6,6 +6,19 @@ import { SellCard } from "./ui/components/sellCard/SellCard";
 import { Button } from "./ui/design-system/button/Button";
 import { Typography } from "./ui/design-system/typography/Typography";
 import { Footer } from "./ui/components/footer/Footer";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+// import type { Metadata } from "next";
+// import { Inter } from "next/font/google";
+
+
+// const inter = Inter({ subsets: ["latin"] });
+
+// export const metadata: Metadata = {
+//   title: "Strilherezh",
+//   description: "....",
+// };
 
 export default function Home() {
   return (

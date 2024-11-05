@@ -15,7 +15,7 @@ interface Props {
                 id="Line 646" 
                 d="M12 4L7 9L2 4" 
                 stroke="#505050" 
-                stroke-width="2"
+                strokeWidth="2"
                 />
             </g>
         </svg>
