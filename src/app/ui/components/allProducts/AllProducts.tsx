@@ -24,6 +24,26 @@ export default function AllProduct () {
             variant="closed"
             >
             </FilterBar>
+            <div className="grid grid-cols-4 grid-rows-4 gap-6 p-[2.5rem] border-b-2 border-solid border-gold"
+            >
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+                <SellCard/>
+            </div>
+            <Footer></Footer>
         </main>
     )
 }
