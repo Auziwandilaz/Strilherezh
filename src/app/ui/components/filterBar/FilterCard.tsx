@@ -16,7 +16,7 @@ export const FilterCard = ({
     className,
 }:Props) => {
     return (
-        <form action="/filter" method="post" className="flex flex-col gap-[1.25rem] items-top justify-between h-fit w-[15rem] px-[3.125rem]">
+        <form key={title} action="/filter" method="post" className="flex flex-col gap-[1.25rem] items-top justify-between h-fit w-[15rem] px-[3.125rem]">
                 <label>
                     <Typography
                     variant="p"
@@ -27,9 +27,10 @@ export const FilterCard = ({
                         {title}
                     </Typography>
                 </label>
-                {list.map(content => (
-                    <p className="flex items-center justify-between w-fit h-fit">
+                {list.map((content) => (
+                    <div className="flex items-center justify-between w-fit h-fit">
                         <input 
+                        key={content}
                         type={clsx(round ? "radio" : "checkbox")} 
                         name={clsx(`${title}`)} 
                         value=""
@@ -40,9 +41,7 @@ export const FilterCard = ({
                             "appearance-none forced-colors:appearance-auto accent-gold w-[14px] h-[14px] border-[1px] border-solid border-black default:ring-2 rounded-none bg-transparent text-white checked:bg-gold mr-[0.62rem] cursor-pointer transition-all ease-out delay-75 relative",
                         )}
                         />
-                        <svg className="absolute z-[5] inset-0 fill-current invisible peer-checked:visible" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 4.00024L4 7.00024L9 1.00024" stroke="white"/>
-                        </svg>
+
                         <label>
                             <Typography
                             variant="p"
@@ -53,7 +52,7 @@ export const FilterCard = ({
                                 {content}
                             </Typography>
                         </label>
-                    </p>
+                    </div>
                 ))}
         </form>
     );
