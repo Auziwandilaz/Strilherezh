@@ -41,6 +41,24 @@ a:hover {
   }
 }
 
+#arrow-down {
+  animation: rotate90 500ms ease-out 100ms once linear  forwards;
+  transition: ease-out 200ms 100ms;
+  &:hover  {
+    cursor: pointer;
+  }
+}
+
+
+@keyframes rotate180 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
 .category-card {
   position: relative;
 }

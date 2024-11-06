@@ -16,6 +16,12 @@ export const FilterBar = ({
     variant = "closed",
     className,
 }:Props) => {
+    const typoStyle = "font-medium";
+    const underlineAnimationBlack =
+    "bg-left-bottom bg-gradient-to-r from-black to-black bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-300 ease-out cursor-pointer";
+    const rotate180 = "group-hover:animate-rotate180 transition-all duration-300 ease-out cursor-pointer"
+
+
     switch (variant) {
         case "closed":
         return (
@@ -32,15 +38,20 @@ export const FilterBar = ({
                         >
                             Trier par
                         </Typography>
-                        <Typography
-                        variant="p"
-                        color="black"
-                        font="outfit"
-                        className="font-medium"
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
                         >
-                            Nouveautés
-                        </Typography>
-                        <ArrowDown></ArrowDown>
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Nouveautés
+                            </Typography>
+                            <ArrowDown
+                            ></ArrowDown>
+                        </button>
                     </div>
                     <div className="flex gap-[0.62rem] items-center justify-between h-fit">
                         <Typography 
@@ -51,15 +62,21 @@ export const FilterBar = ({
                         >
                             Contenant
                         </Typography>
-                        <Typography
-                        variant="p"
-                        color="black"
-                        font="outfit"
-                        className="font-medium"
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
                         >
-                            Tout
-                        </Typography>
-                        <ArrowDown></ArrowDown>
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Tout
+                            </Typography>
+                            <ArrowDown
+                            className="group-hover:filter-rotate-arrow"
+                            ></ArrowDown>
+                        </button>
                     </div>
                     <div className="flex gap-[0.62rem] items-center justify-between h-fit">
                         <Typography 
@@ -70,15 +87,20 @@ export const FilterBar = ({
                         >
                             Volume
                         </Typography>
-                        <Typography
-                        variant="p"
-                        color="black"
-                        font="outfit"
-                        className="font-medium"
-                        >
-                            Tout
-                        </Typography>
-                        <ArrowDown></ArrowDown>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]">
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Tout
+                            </Typography>
+                            <ArrowDown
+                            className="group-hover:filter-rotate-arrow"
+                            ></ArrowDown>
+                        </button>
                     </div>
                 </div>
                 <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
@@ -90,15 +112,19 @@ export const FilterBar = ({
                         >
                             16 Résultat(s) Trouvé(s)
                         </Typography>
-                        <Typography
-                        variant="p"
-                        color="black"
-                        font="outfit"
-                        className="font-medium"
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
                         >
-                            Filtres
-                        </Typography>
-                        <FilterIcon></FilterIcon>
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Filtres
+                            </Typography>
+                            <FilterIcon></FilterIcon>
+                        </button>
                     </div>
             </div>
         );
@@ -122,7 +148,7 @@ export const FilterBar = ({
                             variant="p"
                             color="black"
                             font="outfit"
-                            className="font-bold"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
                             >
                                 Nouveautés
                             </Typography>
@@ -141,7 +167,7 @@ export const FilterBar = ({
                             variant="p"
                             color="black"
                             font="outfit"
-                            className="font-medium"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
                             >
                                 Tout
                             </Typography>
@@ -161,7 +187,7 @@ export const FilterBar = ({
                             variant="p"
                             color="black"
                             font="outfit"
-                            className="font-medium"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
                             >
                                 Filtres
                             </Typography>
@@ -206,7 +232,7 @@ export const FilterBar = ({
                         variant="p"
                         color="black"
                         font="outfit"
-                        className="font-medium"
+                        className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
                         >
                             Réinitialiser
                         </Typography>
@@ -217,7 +243,7 @@ export const FilterBar = ({
                         variant="p"
                         color="black"
                         font="outfit"
-                        className="font-medium"
+                        className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationWhite)}
                         >
                             Fermer
                         </Typography>
@@ -559,7 +585,7 @@ export const FilterBar = ({
                                 variant="p"
                                 color="black"
                                 font="outfit"
-                                className="font-medium"
+                                className={clsx("font-medium", underLineAnimationWhite)}
                                 >
                                     Filtres
                                 </Typography>

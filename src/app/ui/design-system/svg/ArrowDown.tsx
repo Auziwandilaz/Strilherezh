@@ -1,3 +1,6 @@
+import React from "react";
+import "../../../../app/globals.css"
+
 interface Props {
     className?: string;
 }
@@ -7,6 +10,7 @@ interface Props {
         <svg 
         width="14" 
         height="14" 
+        id="arrow-down"
         viewBox="0 0 14 14" 
         fill="none" 
         xmlns="http://www.w3.org/2000/svg">

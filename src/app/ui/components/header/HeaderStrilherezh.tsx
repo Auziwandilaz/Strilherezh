@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { StrilherezhLogo } from "../../design-system/svg/StrilherezhLogo";
 import { Typography } from "../../design-system/typography/Typography";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 
 
