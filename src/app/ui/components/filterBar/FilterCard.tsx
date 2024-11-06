@@ -16,7 +16,7 @@ export const FilterCard = ({
     className,
 }:Props) => {
     return (
-        <form action="/filter" method="post" className="flex flex-col gap-[1.25rem] items-top justify-between h-fit w-fit px-[3.125rem]">
+        <form action="/filter" method="post" className="flex flex-col gap-[1.25rem] items-top justify-between h-fit w-[15rem] px-[3.125rem]">
                 <label>
                     <Typography
                     variant="p"
@@ -35,11 +35,14 @@ export const FilterCard = ({
                         value=""
                         className={clsx(
                             round ? 
-                            "text-gold w-[14px] h-[14px] border-px border-solid border-black rounded-[14px] bg-transparent focus:ring-gold focus:ring-2"
+                            "appearance-none forced-colors:appearance-auto accent-gold text-gold w-[14px] h-[14px] border-[1px] border-solid border-black rounded-[14px] bg-transparent mr-[0.62rem] checked:border-white checked:text-white checked:bg-gold checked:ring checked:ring-gold cursor-pointer transition-all ease-out delay-75 relative"
                             :
-                            "w-[14px] h-[14px] border-px border solid border-black bg-transparent text-white focus:bg-gold"
+                            "appearance-none forced-colors:appearance-auto accent-gold w-[14px] h-[14px] border-[1px] border-solid border-black default:ring-2 rounded-none bg-transparent text-white checked:bg-gold mr-[0.62rem] cursor-pointer transition-all ease-out delay-75 relative",
                         )}
                         />
+                        <svg className="absolute z-[5] inset-0 fill-current invisible peer-checked:visible" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 4.00024L4 7.00024L9 1.00024" stroke="white"/>
+                        </svg>
                         <label>
                             <Typography
                             variant="p"
