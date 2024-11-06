@@ -10,15 +10,22 @@ import { HeroBanner } from "../heroBanner/HeroBanner";
 import { FilterBar } from "../filterBar/FilterBar";
 import { Footer } from "../footer/Footer";
 
-function ShowFilters (
-    {closeClicked, filterByClicked, contenantClicked, volumeClicked, allFiltersClicked}: 
+interface showFilterProps {
+    closeClicked?:boolean;
+    filterByClicked?:boolean;
+    contenantClicked?:boolean;
+    volumeClicked?:boolean;
+    allFiltersClicked?:boolean;
+}
+
+const ShowFilters = (
     {
-        closeClicked?:boolean;
-        filterByClicked?:boolean;
-        contenantClicked?:boolean;
-        volumeClicked?:boolean;
-        allFiltersClicked?:boolean;
-    }) {
+        closeClicked = false, 
+        filterByClicked = false, 
+        contenantClicked = false, 
+        volumeClicked = false, 
+        allFiltersClicked = false
+    }:showFilterProps) => {
     
     if (closeClicked) {
         return (

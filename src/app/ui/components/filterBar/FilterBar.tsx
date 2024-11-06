@@ -10,11 +10,6 @@ import React, { useState } from 'react';
 
 interface Props {
     variant?: "closed" | "filter-by" | "contenant" | "volume" | "all-filters";
-    closeClicked?: boolean;
-    filterByClicked?: boolean;
-    contenantClicked?: boolean;
-    volumeClicked?: boolean;
-    allFiltersClicked?: boolean;
     className?: string;
 }
 
@@ -22,10 +17,10 @@ interface Props {
 
 export const FilterBar = ({
     variant,
-    closeClicked = false,
-    filterByClicked = false,
-    contenantClicked = false,
-    volumeClicked = false,
+    closeClicked = false, 
+    filterByClicked = false, 
+    contenantClicked = false, 
+    volumeClicked = false, 
     allFiltersClicked = false,
     className,
 }:Props) => {
@@ -53,7 +48,7 @@ export const FilterBar = ({
                         </Typography>
                         <button
                         className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                        onClick={ () => closeClicked = true}
+                        onClick={ () => {filterByClicked = true}}
                         >
                             <Typography
                             variant="p"
