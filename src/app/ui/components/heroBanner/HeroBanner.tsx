@@ -5,7 +5,7 @@ import { Typography } from "../../design-system/typography/Typography";
 
 
 interface Props {
-    variant?: "profil" | "favorites" | "account" | "all-products";
+    variant?: "profil" | "favorites" | "account" | "all-products" | "history";
     className?: string;
 }
 
@@ -66,6 +66,62 @@ export const HeroBanner = ({
                             className="text-center max-sm:text-[50px] capitalize"
                         >
                             {"TOUS NOS PRODUITS"}
+                        </Typography>
+                    </div>
+                </div>
+            );
+            case "history":
+            return (
+                <div className="relative w-full h-[700px] max-xl:h-[600px] max-lg:h-[580px] max-md:h-[500px] max-sm:h-[400px] max-sx:h-[400px]">
+                    <Image
+                        src="/img/hero-banner-history-placeholder.webp"
+                        alt="fond de présentation d'un phare sur la cote d'une plage"
+                        className="w-full h-full object-cover brightness-50"
+                        layout="fill"
+                    />
+                    <div className=" absolute inset-0
+                    flex flex-row align-middle justify-between w-fit h-[1.5rem] gap-[0.62rem] px-[3.12rem] py-[1.25rem]
+                    ">
+                        <button>
+                            <BackArrowIcon></BackArrowIcon>
+                        </button>
+                        <div
+                            className="flex flex-row gap-[0.62rem] align-middle justify-between w-fit h-fit"
+                        >
+                            <Typography
+                                variant="p-small"
+                                color="white"
+                                font="quicksand"
+                                className=""
+                            >
+                                Skornenn
+                            </Typography>
+                            <span className="text-white">/</span>
+                            <Typography
+                                variant="p-small"
+                                color="white"
+                                font="quicksand"
+                                className="">
+                                Votre compte
+                            </Typography>
+                        </div>
+                    </div>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                        <Typography
+                            font="outfit"
+                            variant="h2"
+                            color="gold"
+                            className="text-center max-sm:text-[25px] leading-5"
+                        >
+                            STRILHEREZH
+                        </Typography>
+                        <Typography
+                            font="outfit"
+                            variant="h1"
+                            color="white"
+                            className="text-center max-sm:text-[50px] capitalize"
+                        >
+                            {"NOTRE HISTOIRE"}
                         </Typography>
                     </div>
                 </div>

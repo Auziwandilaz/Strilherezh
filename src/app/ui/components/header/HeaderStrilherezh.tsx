@@ -36,13 +36,15 @@ export const HeaderStrilherezh = ({}) => {
           </Link>
         </button>
         <button className="group text-white transition-all duration-300 ease-in-out">
-          <Typography
-            font="outfit"
-            color="white"
-            className={clsx(typoStyle, "max-sm:hidden", underlineAnimationWhite)}
-          >
-            Notre histoire
-          </Typography>
+          <Link to="/history">
+            <Typography
+              font="outfit"
+              color="white"
+              className={clsx(typoStyle, "max-sm:hidden", underlineAnimationWhite)}
+            >
+              Notre histoire
+            </Typography>
+          </Link>
         </button>
         <svg
           xmlns="http://www.w3.org/2000/svg"
