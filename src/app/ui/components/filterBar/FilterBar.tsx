@@ -37,7 +37,7 @@ export const FilterBar = ({
     switch (variant) {
         case "closed":
         return (
-            <div className="bg-white h-fit w-full py-[1.25rem] px-[3.125rem]  flex flex-row justify-between items-center border-y border-lightgray"
+            <div className="bg-white h-fit w-full py-[1.25rem] px-[3.125rem]  flex flex-row justify-between items-center border-y border-lightgray max-md:px-[1.25rem]"
             >
                 <div
                 className="flex flex-row items-center justify-between gap-[2.81rem] w-fit h-fit">
@@ -809,7 +809,7 @@ export const FilterBar = ({
                         </button>
                     </div>
             </div>
-                    <div className="bg-white w-full h-auto py-[1.875rem] flex flex-row flex-wrap justify-between items-start gap-y-1 group-last:border-none">
+                    <div className="bg-white w-full h-auto py-[1.875rem] flex flex-row flex-wrap justify-between items-start gap-y-10 group-last:border-none">
                         <FilterCard
                         title = "Trié par:"
                         list = {["Nouveautés", "Prix croissant", "Prix décroissant"]}
