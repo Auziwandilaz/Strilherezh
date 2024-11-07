@@ -42,8 +42,9 @@ export const Header = ({}) => {
         </button>
       </div>
       <div className="absolute left-1/2 transform -translate-x-1/2">
+        
         {/* <Logo className="block w-[103px] h-[60px] bg-black"></Logo> */}
-        <StrilherezhLogo className="w-[103px] h-[60px] max-sm:w-[69px] max-sm:h-[40px]" />
+          <StrilherezhLogo className="w-[103px] h-[60px] max-sm:w-[69px] max-sm:h-[40px]" />
       </div>
       <div className="flex">
         <button className="flex items-center mr-[30px] max-sm:mr-[22px]">

@@ -2,6 +2,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import { BackArrowIcon } from "../../design-system/svg/BackArrowIcon";
 import { Typography } from "../../design-system/typography/Typography";
+import { useNavigate } from "react-router-dom";
 
 
 interface Props {
@@ -13,6 +14,8 @@ export const HeroBanner = ({
     variant = "profil",
     className,
 }: Props) => {
+    const navigate = useNavigate();
+
     switch (variant) {
         case "all-products":
             return (
@@ -26,7 +29,7 @@ export const HeroBanner = ({
                     <div className=" absolute inset-0
                     flex flex-row align-middle justify-between w-fit h-[1.5rem] gap-[0.62rem] px-[3.12rem] py-[1.25rem]
                     ">
-                        <button>
+                        <button onClick={() => navigate(-1)}>
                             <BackArrowIcon></BackArrowIcon>
                         </button>
                         <div
@@ -82,7 +85,7 @@ export const HeroBanner = ({
                     <div className=" absolute inset-0
                     flex flex-row align-middle justify-between w-fit h-[1.5rem] gap-[0.62rem] px-[3.12rem] py-[1.25rem]
                     ">
-                        <button>
+                        <button onClick={() => navigate(-1)}>
                             <BackArrowIcon></BackArrowIcon>
                         </button>
                         <div
@@ -134,7 +137,7 @@ export const HeroBanner = ({
                     <div className="
                 flex flex-row align-middle justify-between w-[13.4rem] h-[1.5rem] gap-[0.62rem] 
                 ">
-                        <button>
+                        <button onClick={() => navigate(-1)}>
                             <BackArrowIcon></BackArrowIcon>
                         </button>
                         <div
@@ -175,7 +178,7 @@ export const HeroBanner = ({
                     <div className="
                 flex flex-row align-middle justify-between w-[13.4rem] h-[1.5rem] gap-[0.62rem] 
                 ">
-                        <button>
+                        <button onClick={() => navigate(-1)}>
                             <BackArrowIcon></BackArrowIcon>
                         </button>
                         <div
@@ -216,7 +219,7 @@ export const HeroBanner = ({
                     <div className="
                 flex flex-row align-middle justify-between w-[13.4rem] h-[1.5rem] gap-[0.62rem] 
                 ">
-                        <button>
+                        <button onClick={() => navigate(-1)}>
                             <BackArrowIcon></BackArrowIcon>
                         </button>
                         <Typography

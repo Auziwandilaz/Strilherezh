@@ -26,6 +26,11 @@ function App() {
                             element={<Home />}
                         />
                         <Route
+                            exact 
+                            path="/Home"
+                            element={<Home />}
+                        />
+                        <Route
                             path="/allproducts" //route to all products page
                             element={<AllProduct />}
                         />

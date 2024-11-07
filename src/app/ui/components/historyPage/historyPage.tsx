@@ -14,7 +14,7 @@ import { Footer } from "../footer/Footer";
 export default function HistoryPage () {
 
     return (
-        <main className="">
+        <main className="w-full">
             <Header></Header>
             <HeaderStrilherezh></HeaderStrilherezh>
             {/* ---------------- */}
@@ -47,7 +47,7 @@ export default function HistoryPage () {
             {/* ---------------- */}
 
             <HistoryBannerCard variant="barrels">
-                <div className="absolute z-10 inset-0 flex flex-col items-start justify-center text-left height-[12.5rem] w-[62rem] py-[11.25rem] px-[8.12rem]">
+                <div className="absolute z-10 inset-0 flex flex-col items-start justify-center text-left height-[12.5rem] w-[65rem] py-[11.25rem] px-[8.12rem] max-md:h-[32em] max-md:w-full max-md:py-[1.25rem] max-md:px-[1.25rem]">
                     <Typography
                     variant="h2"
                     color="white"
@@ -66,7 +66,7 @@ export default function HistoryPage () {
                 </div>
             </HistoryBannerCard>
             <HistoryBannerCard variant="cliff-sea">
-                <div className="absolute z-10 inset-0 flex flex-col items-end justify-center text-right height-[12.5rem] w-[65rem] py-[11.25rem] px-[8.12rem] ml-auto">
+                <div className="absolute z-10 inset-0 flex flex-col items-start justify-center text-left height-[12.5rem] w-[65rem] py-[11.25rem] px-[8.12rem] max-md:h-[32em] max-md:w-full max-md:py-[1.25rem] max-md:px-[1.25rem]">
                     <Typography
                     variant="h2"
                     color="white"
@@ -85,6 +85,9 @@ export default function HistoryPage () {
                     </Typography>
                 </div>
             </HistoryBannerCard>
+
+            {/* ---------------- */}
+
             <HistorySection variant="primary">
             <Typography
                     variant="h5"
@@ -105,7 +108,7 @@ export default function HistoryPage () {
 
             {/* ---------------- */}
 
-            <div className="bg-lightsalmon grid grid-cols-2 grid-rows-2 gap-[2.5rem] p-[2.5rem] w-full h-fit">
+            <div className="bg-lightsalmon grid grid-cols-2 grid-rows-2 gap-[2.5rem] p-[2.5rem] w-full h-fit max-md:grid-cols-1 max-md:grid-rows-4 ">
                 <ProductDescCard>
                     <Typography
                     variant="h5"
@@ -179,7 +182,7 @@ export default function HistoryPage () {
             {/* ---------------- */}
 
             <HistoryBannerCard variant="fields">
-                <div className="absolute z-10 inset-0 flex flex-col items-start justify-center text-left height-[12.5rem] w-[65rem] py-[11.25rem] px-[8.12rem] mr-auto">
+                <div className="absolute z-10 inset-0 flex flex-col items-start justify-center text-left height-[12.5rem] w-[65rem] py-[11.25rem] px-[8.12rem] max-md:h-[32em] max-md:w-full max-md:py-[1.25rem] max-md:px-[1.25rem]">
                     <Typography
                     variant="h2"
                     color="white"
@@ -198,6 +201,7 @@ export default function HistoryPage () {
                     </Typography>
                 </div>
             </HistoryBannerCard>
+            {/* ---------------- */}
             <Footer></Footer>
         </main>
     )
