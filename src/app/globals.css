@@ -41,6 +41,15 @@ a:hover {
   }
 }
 
+.filter-line-before {
+  &:before {
+    content: "-";
+    width: fit-content;
+    margin-right: 0.62rem;
+    color: #505050;
+  }
+}
+
 .filter-form-after {
   &:after {
     content: "";
@@ -48,6 +57,10 @@ a:hover {
     height: 100%;
     background-color: #AAAAAA;
   }
+}
+
+.filter-container {
+  width: 90%;
 }
 
 #arrow-down {

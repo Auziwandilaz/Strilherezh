@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import clsx from "clsx";
 import { Typography } from "../../design-system/typography/Typography";
 import { CrossIconOutline } from "../../design-system/svg/CrossOutlineIcon";
@@ -5,30 +6,33 @@ import { FilterIcon } from "../../design-system/svg/FilterIcon";
 import { ReloadIcon } from "../../design-system/svg/ReloadIcon";
 import { ArrowDown } from "../../design-system/svg/ArrowDown";
 import { FilterCard } from "./FilterCard";
-import React, { useState } from 'react';
 
+type VariantType = "closed" | "filter-by" | "contenant" | "volume" | "all-filters";
 
 interface Props {
-    variant?: "closed" | "filter-by" | "contenant" | "volume" | "all-filters";
+    variant?: VariantType;
     className?: string;
 }
 
 
-
 export const FilterBar = ({
-    variant,
-    closeClicked = false, 
-    filterByClicked = false, 
-    contenantClicked = false, 
-    volumeClicked = false, 
-    allFiltersClicked = false,
     className,
 }:Props) => {
     const typoStyle = "font-medium";
     const underlineAnimationBlack =
     "bg-left-bottom bg-gradient-to-r from-black to-black bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-300 ease-out cursor-pointer";
+    const filterBarTransition = "@apply overflow-hidden w-full h-auto leading-20 box-border transition-[height] duration-[0.3s] ease-[ease-in-out] delay-[0.1s] left-0;";
 
-    const [currentFilterVariant, setCurrentFilterVariant] = useState("");
+    let countClick = 0;
+
+
+    const [variant, setVariant] = useState<VariantType>("closed");
+
+    const handleVariantChange = (newVariant: "closed" | "filter-by" | "contenant" | "volume" | "all-filters") => {
+
+        setVariant(currentVariant => currentVariant === newVariant ? "closed" : newVariant); // Toggle to "closed" if clicking on the same variant
+    };
+
 
     switch (variant) {
         case "closed":
@@ -48,7 +52,7 @@ export const FilterBar = ({
                         </Typography>
                         <button
                         className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                        onClick={ () => {filterByClicked = true}}
+                        onClick={ () => {handleVariantChange("filter-by")}}
                         >
                             <Typography
                             variant="p"
@@ -59,6 +63,7 @@ export const FilterBar = ({
                                 Nouveautés
                             </Typography>
                             <ArrowDown
+                            
                             ></ArrowDown>
                         </button>
                     </div>
@@ -73,7 +78,7 @@ export const FilterBar = ({
                         </Typography>
                         <button
                         className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                        onClick={ () => contenantClicked = true}
+                        onClick={ () => {handleVariantChange("contenant")}}
                         >
                             <Typography
                             variant="p"
@@ -84,7 +89,6 @@ export const FilterBar = ({
                                 Tout
                             </Typography>
                             <ArrowDown
-                            className="group-hover:filter-rotate-arrow"
                             ></ArrowDown>
                         </button>
                     </div>
@@ -99,7 +103,117 @@ export const FilterBar = ({
                         </Typography>
                         <button
                         className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]" 
-                        onClick={ () => volumeClicked = true}
+                        onClick={ () => {handleVariantChange("volume")}}
+                        >
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Tout
+                            </Typography>
+                            <ArrowDown
+                            ></ArrowDown>
+                        </button>
+                    </div>
+                </div>
+                <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="w-fit filter-bar-after"
+                        >
+                            16 Résultat(s) Trouvé(s)
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
+                        onClick={ () => {handleVariantChange("all-filters")}}
+                        >
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Filtres
+                            </Typography>
+                            <FilterIcon></FilterIcon>
+                        </button>
+                    </div>
+            </div>
+        );
+        case "filter-by":
+        return (
+            <div className="bg-white h-fit w-full flex flex-col items-center justify-center">
+                <div className="bg-white h-fit w-full py-[1.25rem] px-[3.125rem]  flex flex-row justify-between items-center border-y border-lightgray"
+            >
+                <div
+                className="flex flex-row items-center justify-between gap-[2.81rem] w-fit h-fit">
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="filter-bar-after"
+                        >
+                            Trier par
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
+                        onClick={ () => {handleVariantChange("filter-by")}}
+                        >
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Nouveautés
+                            </Typography>
+                            <ArrowDown 
+                            
+                            ></ArrowDown>
+                        </button>
+                    </div>
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit max-sm:hidden">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="filter-bar-after"
+                        >
+                            Contenant
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
+                        onClick={ () => {handleVariantChange("contenant")}}
+                        >
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Tout
+                            </Typography>
+                            <ArrowDown
+                            ></ArrowDown>
+                        </button>
+                    </div>
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit max-md:hidden">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="filter-bar-after"
+                        >
+                            Volume
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]" 
+                        onClick={ () => {handleVariantChange("volume")}}
                         >
                             <Typography
                             variant="p"
@@ -126,7 +240,7 @@ export const FilterBar = ({
                         </Typography>
                         <button
                         className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
-                        onClick={ () => allFiltersClicked = true}
+                        onClick={ () => {handleVariantChange("all-filters")}}
                         >
                             <Typography
                             variant="p"
@@ -140,119 +254,13 @@ export const FilterBar = ({
                         </button>
                     </div>
             </div>
-        );
-        case "filter-by":
-        return (
-            <div className="bg-white h-fit w-full flex flex-col items-center justify-center">
-                <div className="bg-white h-fit w-full py-[3.125rem] px-[3.125rem] flex flex-row jusify-between items-center border-y border-lightgray"
-                >
-                    <div
-                    className="flex flex-row items-center justify-between gap-[2.81rem] w-fit h-fit">
-                        <div className="flex gap-[0.62rem] items-center justify-between h-fit">
-                            <Typography 
-                            variant="p"
-                            color="gray"
-                            font="outfit"
-                            className="after: content-[''] after: h-5/6 w-px bg-gray "
-                            >
-                                Trier par
-                            </Typography>
-                            <button
-                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                            onClick={ () => filterByClicked = true}
-                            >
-                                <Typography
-                                variant="p"
-                                color="black"
-                                font="outfit"
-                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                >
-                                    Nouveautés
-                                </Typography>
-                                <ArrowDown></ArrowDown>
-                            </button>
-                        </div>
-                        <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
-                            <Typography 
-                            variant="p"
-                            color="gray"
-                            font="outfit"
-                            className="after: content-[''] after: h-5/6 w-px bg-gray "
-                            >
-                                Contenant
-                            </Typography>
-                            <button
-                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                            onClick={ () => contenantClicked = true}
-                            >
-                                <Typography
-                                variant="p"
-                                color="black"
-                                font="outfit"
-                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                >
-                                    Tout
-                                </Typography>
-                                <ArrowDown></ArrowDown>
-                            </button>
-                        </div>
-                        <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
-                            <Typography 
-                            variant="p"
-                            color="gray"
-                            font="outfit"
-                            className="after: content-[''] after: h-5/6 w-px bg-gray "
-                            >
-                                Volume
-                            </Typography>
-                            <button
-                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                            onClick={ () => volumeClicked = true}
-                            >
-                                <Typography
-                                variant="p"
-                                color="black"
-                                font="outfit"
-                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                >
-                                    Tout
-                                </Typography>
-                                <ArrowDown></ArrowDown>
-                            </button>
-                        </div>
-                    </div>
-                    <div className="flex gap-[0.62rem] items-center justify-between h-fit">
-                            <Typography 
-                            variant="p"
-                            color="gray"
-                            font="outfit"
-                            className="after: content-[''] after: h-5/6 w-px bg-gray "
-                            >
-                                16 Résultat(s) Trouvé(s)
-                            </Typography>
-                            <button
-                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                            onClick={ () => allFiltersClicked = true}
-                            >
-                                <Typography
-                                variant="p"
-                                color="black"
-                                font="outfit"
-                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                >
-                                    Filtres
-                                </Typography>
-                                <FilterIcon></FilterIcon>
-                            </button>
-                    </div>
-                </div>
-                <ul className="list-none px-[3.125rem] py-[1.875rem] flex flex-col align-top justify-start gap-y-[1.25rem]">
+                <ul className={clsx("list-none px-[3.125rem] py-[1.875rem] flex flex-col items-start justify-start gap-y-[1.25rem] w-full h-fit", filterBarTransition)}>
                     <li>
                         <Typography
                         variant="p"
                         color="black"
                         font="outfit"
-                        className="font-extralight before:content-[''] before: w-[10px] before:h-px bg-black mr-[0.2rem]"
+                        className="font-extralight filter-line-before mr-[0.2rem] transition-all ease-out delay-100 duration-200 hover:font-medium hover:cursor-pointer"
                         >
                             Nouveautés
                         </Typography>
@@ -262,7 +270,7 @@ export const FilterBar = ({
                         variant="p"
                         color="black"
                         font="outfit"
-                        className="font-extralight before:content-[''] before: w-[10px] before:h-px bg-black mr-[0.2rem]"
+                        className="font-extralight filter-line-before mr-[0.2rem] transition-all ease-out delay-100 duration-200 hover:font-medium hover:cursor-pointer"
                         >
                             Prix Croissant
                         </Typography>
@@ -272,45 +280,45 @@ export const FilterBar = ({
                         variant="p"
                         color="black"
                         font="outfit"
-                        className="font-extralight before:content-[''] before: w-[10px] before:h-px bg-black mr-[0.2rem]"
+                        className="font-extralight filter-line-before mr-[0.2rem] transition-all ease-out delay-100 duration-200 hover:font-medium hover:cursor-pointer"
                         >
                             Prix décroissant
                         </Typography>
                     </li>
                 </ul>
-                <div className="flex flex-row items-center justify-center bg-white py-[0.62rem] px-[0.62rem]">
-                    <div className="flex flex-row items-center justify-center gap-x-[0.3125rem] w-full h-fit after:content-[''] after:h-[1rem] after:w-px after:mx-[0.62rem]">
-                        <button
-                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                        >
-                            <Typography
-                            variant="p"
-                            color="black"
-                            font="outfit"
-                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                <div className="flex flex-row items-center justify-center bg-white py-[0.62rem] px-[0.62rem] w-full">
+                        <div className="flex flex-row items-center justify-center gap-x-[0.3125rem] w-fit h-fit filter-bar-after">
+                            <button
+                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
                             >
-                                Réinitialiser
-                            </Typography>
-                            <ReloadIcon></ReloadIcon>
-                        </button>
-                    </div>
-                    <div className="flex flex-row items-center justify-center gap-x-[0.3125rem] after:content-[''] after:h-[1rem] after:w-px after:mx-[0.62rem]">
-                        <button
-                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                        onClick={ () => closeClicked = true}
-                        >
-                            <Typography
-                            variant="p"
-                            color="black"
-                            font="outfit"
-                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                                <Typography
+                                variant="p"
+                                color="black"
+                                font="outfit"
+                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                                >
+                                    Réinitialiser
+                                </Typography>
+                                <ReloadIcon></ReloadIcon>
+                            </button>
+                        </div>
+                        <div className="flex flex-row items-center justify-center gap-x-[0.3125rem] ml-[0.62rem]">
+                            <button
+                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
+                            onClick={ () => {handleVariantChange("closed")}}
                             >
-                                Fermer
-                            </Typography>
-                            <CrossIconOutline></CrossIconOutline>
-                        </button>
+                                <Typography
+                                variant="p"
+                                color="black"
+                                font="outfit"
+                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                                >
+                                    Fermer
+                                </Typography>
+                                <CrossIconOutline></CrossIconOutline>
+                            </button>
+                        </div>
                     </div>
-                </div>
             </div>
         );
 
@@ -318,91 +326,118 @@ export const FilterBar = ({
         case "contenant":
         return (
             <div className="bg-white h-fit w-full flex flex-col items-center justify-center p-0">
-                <div className="bg-white h-fit w-full py-[3.125rem] px-[3.125rem] flex flex-row jusify-between items-center border-y border-lightgray"
-                >
-                    <div
-                    className="flex flex-row items-center justify-between gap-[2.81rem] w-fit h-fit">
-                        <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
-                            <Typography 
+                <div className="bg-white h-fit w-full py-[1.25rem] px-[3.125rem]  flex flex-row justify-between items-center border-y border-lightgray"
+            >
+                <div
+                className="flex flex-row items-center justify-between gap-[2.81rem] w-fit h-fit">
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="filter-bar-after"
+                        >
+                            Trier par
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
+                        onClick={ () => {handleVariantChange("filter-by")}}
+                        >
+                            <Typography
                             variant="p"
-                            color="gray"
+                            color="black"
                             font="outfit"
-                            className="after: content-[''] after: h-5/6 w-px bg-gray "
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
                             >
-                                Trier par
+                                Nouveautés
                             </Typography>
-                            <button
-                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                            onClick={ () => filterByClicked = true}
-                            >
-                                <Typography
-                                variant="p"
-                                color="black"
-                                font="outfit"
-                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                >
-                                    Nouveautés
-                                </Typography>
-                                <ArrowDown></ArrowDown>
-                            </button>
-                        </div>
-                        <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
-                            <Typography 
-                            variant="p"
-                            color="gray"
-                            font="outfit"
-                            className="after: content-[''] after: h-5/6 w-px bg-gray "
-                            >
-                                Contenant
-                            </Typography>
-                            <button
-                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                            onClick={ () => contenantClicked = true}
-                            >
-                                <Typography
-                                variant="p"
-                                color="black"
-                                font="outfit"
-                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                >
-                                    Tout
-                                </Typography>
-                                <ArrowDown></ArrowDown>
-                            </button>
-                        </div>
+                            <ArrowDown
+                            ></ArrowDown>
+                        </button>
                     </div>
-                    <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
-                            <Typography 
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit max-sm:hidden">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="filter-bar-after"
+                        >
+                            Contenant
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
+                        onClick={ () => {handleVariantChange("contenant")}}
+                        >
+                            <Typography
                             variant="p"
-                            color="gray"
+                            color="black"
                             font="outfit"
-                            className="after: content-[''] after: h-5/6 w-px bg-gray "
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
                             >
-                                16 Résultat(s) Trouvé(s)
+                                Tout
                             </Typography>
-                            <button
-                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                            onClick={ () => allFiltersClicked = true}
+                            <ArrowDown
+                            ></ArrowDown>
+                        </button>
+                    </div>
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit max-md:hidden">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="filter-bar-after"
+                        >
+                            Volume
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]" 
+                        onClick={ () => {handleVariantChange("volume")}}
+                        >
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
                             >
-                                <Typography
-                                variant="p"
-                                color="black"
-                                font="outfit"
-                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                >
-                                    Filtres
-                                </Typography>
-                                <FilterIcon></FilterIcon>
-                            </button>
+                                Tout
+                            </Typography>
+                            <ArrowDown
+                            ></ArrowDown>
+                        </button>
                     </div>
                 </div>
-                <ul className="list-none px-[3.125rem] py-[1.875rem] flex flex-col align-top justify-start gap-y-[1.25rem]">
+                <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="w-fit filter-bar-after"
+                        >
+                            16 Résultat(s) Trouvé(s)
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
+                        onClick={ () => {handleVariantChange("all-filters")}}
+                        >
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Filtres
+                            </Typography>
+                            <FilterIcon></FilterIcon>
+                        </button>
+                    </div>
+                </div>
+                <ul className="list-none px-[3.125rem] py-[1.875rem] flex flex-col items-start justify-start gap-y-[1.25rem] w-full h-fit">
                     <li>
                         <Typography
                         variant="p"
                         color="black"
                         font="outfit"
-                        className="font-extralight before:content-[''] before: w-[10px] before:h-px bg-black mr-[0.2rem]"
+                        className="font-extralight filter-line-before mr-[0.2rem] transition-all ease-out delay-100 duration-200 hover:font-medium hover:cursor-pointer"
                         >
                             Canette & Bouteille
                         </Typography>
@@ -412,7 +447,7 @@ export const FilterBar = ({
                         variant="p"
                         color="black"
                         font="outfit"
-                        className="font-extralight before:content-[''] before: w-[10px] before:h-px bg-black mr-[0.2rem]"
+                        className="font-extralight filter-line-before mr-[0.2rem] transition-all ease-out delay-100 duration-200 hover:font-medium hover:cursor-pointer"
                         >
                             Canette
                         </Typography>
@@ -422,41 +457,45 @@ export const FilterBar = ({
                         variant="p"
                         color="black"
                         font="outfit"
-                        className="font-extralight before:content-[''] before: w-[10px] before:h-px bg-black mr-[0.2rem]"
+                        className="font-extralight filter-line-before mr-[0.2rem] transition-all ease-out delay-100 duration-200 hover:font-medium hover:cursor-pointer"
                         >
                             Bouteille
                         </Typography>
                     </li>
                 </ul>
-                <div className="flex flex-row items-center justify-center bg-white py-[0.62rem] px-[0.62rem]">
-                    <div className="flex flex-row items-center justify-center gap-x-[0.3125rem] w-full h-fit after:content-[''] after:h-[1rem] after:w-px after:mx-[0.62rem]">
-                        <Typography
-                        variant="p"
-                        color="black"
-                        font="outfit"
-                        className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                        >
-                            Réinitialiser
-                        </Typography>
-                        <ReloadIcon></ReloadIcon>
-                    </div>
-                    <div className="flex flex-row items-center justify-center gap-x-[0.3125rem] after:content-[''] after:h-[1rem] after:w-px after:mx-[0.62rem]">
-                        <button
-                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                        onClick={ () => closeClicked = true}
-                        >
-                            <Typography
-                            variant="p"
-                            color="black"
-                            font="outfit"
-                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                <div className="flex flex-row items-center justify-center bg-white py-[0.62rem] px-[0.62rem] w-full">
+                        <div className="flex flex-row items-center justify-center gap-x-[0.3125rem] w-fit h-fit filter-bar-after">
+                            <button
+                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
                             >
-                                Fermer
-                            </Typography>
-                            <CrossIconOutline></CrossIconOutline>
-                        </button>
+                                <Typography
+                                variant="p"
+                                color="black"
+                                font="outfit"
+                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                                >
+                                    Réinitialiser
+                                </Typography>
+                                <ReloadIcon></ReloadIcon>
+                            </button>
+                        </div>
+                        <div className="flex flex-row items-center justify-center gap-x-[0.3125rem] ml-[0.62rem]">
+                            <button
+                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
+                            onClick={ () => {handleVariantChange("closed")}}
+                            >
+                                <Typography
+                                variant="p"
+                                color="black"
+                                font="outfit"
+                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                                >
+                                    Fermer
+                                </Typography>
+                                <CrossIconOutline></CrossIconOutline>
+                            </button>
+                        </div>
                     </div>
-                </div>
             </div>
         );
 
@@ -464,91 +503,120 @@ export const FilterBar = ({
         case "volume":
         return (
             <div className="bg-white h-fit w-full flex flex-col items-center justify-center p-0">
-                <div className="bg-white h-fit w-full py-[3.125rem] px-[3.125rem] flex flex-row jusify-between items-center border-y border-lightgray"
-                >
-                    <div
-                    className="flex flex-row items-center justify-between gap-[2.81rem] w-fit h-fit">
-                        <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
-                            <Typography 
+                <div className="bg-white h-fit w-full py-[1.25rem] px-[3.125rem]  flex flex-row justify-between items-center border-y border-lightgray"
+            >
+                <div
+                className="flex flex-row items-center justify-between gap-[2.81rem] w-fit h-fit">
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="filter-bar-after"
+                        >
+                            Trier par
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
+                        onClick={ () => {handleVariantChange("filter-by")}}
+                        >
+                            <Typography
                             variant="p"
-                            color="gray"
+                            color="black"
                             font="outfit"
-                            className="filter-bar-after w-px bg-gray "
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
                             >
-                                Trier par
+                                Nouveautés
                             </Typography>
-                            <button
-                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                            onClick={ () => filterByClicked = true}
-                            >
-                                <Typography
-                                variant="p"
-                                color="black"
-                                font="outfit"
-                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                >
-                                    Nouveautés
-                                </Typography>
-                                <ArrowDown></ArrowDown>
-                            </button>
-                        </div>
-                        <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
-                            <Typography 
-                            variant="p"
-                            color="gray"
-                            font="outfit"
-                            className="w-px bg-gray "
-                            >
-                                Contenant
-                            </Typography>
-                            <button
-                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                            onClick={ () => contenantClicked = true}
-                            >
-                                <Typography
-                                variant="p"
-                                color="black"
-                                font="outfit"
-                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                >
-                                    Tout
-                                </Typography>
-                                <ArrowDown></ArrowDown>
-                            </button>
-                        </div>
+                            <ArrowDown
+                            ></ArrowDown>
+                        </button>
                     </div>
-                    <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
-                            <Typography 
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit max-sm:hidden">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="filter-bar-after"
+                        >
+                            Contenant
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
+                        onClick={ () => {handleVariantChange("contenant")}}
+                        >
+                            <Typography
                             variant="p"
-                            color="gray"
+                            color="black"
                             font="outfit"
-                            className="w-px bg-gray "
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
                             >
-                                16 Résultat(s) Trouvé(s)
+                                Tout
                             </Typography>
-                            <button
-                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                            onClick={ () => allFiltersClicked = true}
+                            <ArrowDown
+                            className="group-hover:filter-rotate-arrow"
+                            ></ArrowDown>
+                        </button>
+                    </div>
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit max-md:hidden">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="filter-bar-after"
+                        >
+                            Volume
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]" 
+                        onClick={ () => {handleVariantChange("volume")}}
+                        >
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
                             >
-                                <Typography
-                                variant="p"
-                                color="black"
-                                font="outfit"
-                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                >
-                                    Filtres
-                                </Typography>
-                                <FilterIcon></FilterIcon>
-                            </button>
+                                Tout
+                            </Typography>
+                            <ArrowDown
+                            className="group-hover:filter-rotate-arrow"
+                            ></ArrowDown>
+                        </button>
                     </div>
                 </div>
-                <ul className="list-none px-[3.125rem] py-[1.875rem] flex flex-col align-top justify-start gap-y-[1.25rem]">
+                <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="w-fit filter-bar-after"
+                        >
+                            16 Résultat(s) Trouvé(s)
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
+                        onClick={ () => {handleVariantChange("all-filters")}}
+                        >
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Filtres
+                            </Typography>
+                            <FilterIcon></FilterIcon>
+                        </button>
+                    </div>
+            </div>
+                <ul className="list-none px-[3.125rem] py-[1.875rem] flex flex-col items-start justify-start gap-y-[1.25rem] w-full h-fit">
                     <li>
                         <Typography
                         variant="p"
                         color="black"
                         font="outfit"
-                        className="font-extralight capitalize before:content-[''] before: w-[10px] before:h-px bg-black mr-[0.2rem]"
+                        className="font-extralight capitalize filter-line-before mr-[0.2rem] transition-all ease-out delay-100 duration-200 hover:font-medium hover:cursor-pointer"
                         >
                             25cl
                         </Typography>
@@ -558,7 +626,7 @@ export const FilterBar = ({
                         variant="p"
                         color="black"
                         font="outfit"
-                        className="font-extralight capitalize  before:content-[''] before: w-[10px] before:h-px bg-black mr-[0.2rem]"
+                        className="font-extralight capitalize  filter-line-before mr-[0.2rem] transition-all ease-out delay-100 duration-200 hover:font-medium hover:cursor-pointer"
                         >
                             33cl
                         </Typography>
@@ -568,7 +636,7 @@ export const FilterBar = ({
                         variant="p"
                         color="black"
                         font="outfit"
-                        className="font-extralight capitalize  before:content-[''] before:w-[10px] before:h-px bg-black mr-[0.2rem]"
+                        className="font-extralight capitalize  filter-line-before mr-[0.2rem] transition-all ease-out delay-100 duration-200 hover:font-medium hover:cursor-pointer"
                         >
                             50cl
                         </Typography>
@@ -578,7 +646,7 @@ export const FilterBar = ({
                         variant="p"
                         color="black"
                         font="outfit"
-                        className="font-extralight capitalize  before:content-[''] before:w-[10px] before:h-px bg-black mr-[0.2rem]"
+                        className="font-extralight capitalize  filter-line-before mr-[0.2rem] transition-all ease-out delay-100 duration-200 hover:font-medium hover:cursor-pointer"
                         >
                             1l
                         </Typography>
@@ -588,41 +656,45 @@ export const FilterBar = ({
                         variant="p"
                         color="black"
                         font="outfit"
-                        className="font-extralight capitalize  after:content-[''] after: w-[10px] after:h-px bg-black mr-[0.2rem]"
+                        className="font-extralight capitalize  filter-line-before mr-[0.2rem] transition-all ease-out delay-100 duration-200 hover:font-medium hover:cursor-pointer"
                         >
                             1.5l
                         </Typography>
                     </li>
                 </ul>
-                <div className="flex flex-row items-center justify-center bg-white py-[0.62rem] px-[0.62rem]">
-                    <div className="flex flex-row items-center justify-center gap-x-[0.3125rem] w-full h-fit after:content-[''] after:h-[1rem] after:w-px after:mx-[0.62rem]">
-                        <Typography
-                        variant="p"
-                        color="black"
-                        font="outfit"
-                        className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                        >
-                            Réinitialiser
-                        </Typography>
-                        <ReloadIcon></ReloadIcon>
-                    </div>
-                    <div className="flex flex-row items-center justify-center gap-x-[0.3125rem] after:content-[''] after:h-[1rem] after:w-px after:mx-[0.62rem]">
-                        <button
-                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                        onClick={ () => closeClicked = true}
-                        >
-                            <Typography
-                            variant="p"
-                            color="black"
-                            font="outfit"
-                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                <div className="flex flex-row items-center justify-center bg-white py-[0.62rem] px-[0.62rem] w-full">
+                        <div className="flex flex-row items-center justify-center gap-x-[0.3125rem] w-fit h-fit filter-bar-after">
+                            <button
+                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
                             >
-                                Fermer
-                            </Typography>
-                            <CrossIconOutline></CrossIconOutline>
-                        </button>
+                                <Typography
+                                variant="p"
+                                color="black"
+                                font="outfit"
+                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                                >
+                                    Réinitialiser
+                                </Typography>
+                                <ReloadIcon></ReloadIcon>
+                            </button>
+                        </div>
+                        <div className="flex flex-row items-center justify-center gap-x-[0.3125rem] ml-[0.62rem]">
+                            <button
+                            className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
+                            onClick={ () => {handleVariantChange("closed")}}
+                            >
+                                <Typography
+                                variant="p"
+                                color="black"
+                                font="outfit"
+                                className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                                >
+                                    Fermer
+                                </Typography>
+                                <CrossIconOutline></CrossIconOutline>
+                            </button>
+                        </div>
                     </div>
-                </div>
             </div>
         );
 
@@ -631,136 +703,132 @@ export const FilterBar = ({
             return (
                 <div className="bg-white h-fit w-full flex flex-col items-center justify-center">
                     <div className="bg-white h-fit w-full py-[1.25rem] px-[3.125rem]  flex flex-row justify-between items-center border-y border-lightgray"
-                    >
-                        <div
-                        className="flex flex-row items-center justify-between gap-[2.81rem] w-fit h-fit">
-                            <div className="flex gap-[0.62rem] items-center justify-between h-fit">
-                                <Typography 
-                                variant="p"
-                                color="gray"
-                                font="outfit"
-                                className="filter-bar-after"
-                                >
-                                    Trier par
-                                </Typography>
-                                <button
-                                className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                                onClick={ () => filterByClicked = true}
-                                >
-                                    <Typography
-                                    variant="p"
-                                    color="black"
-                                    font="outfit"
-                                    className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                    >
-                                        Nouveautés
-                                    </Typography>
-                                    <ArrowDown
-                                    ></ArrowDown>
-                                </button>
-                            </div>
-                            <div className="flex gap-[0.62rem] items-center justify-between h-fit">
-                                <Typography 
-                                variant="p"
-                                color="gray"
-                                font="outfit"
-                                className="filter-bar-after"
-                                >
-                                    Contenant
-                                </Typography>
-                                <button
-                                className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                                onClick={ () => contenantClicked = true}
-                                >
-                                    <Typography
-                                    variant="p"
-                                    color="black"
-                                    font="outfit"
-                                    className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                    >
-                                        Tout
-                                    </Typography>
-                                    <ArrowDown
-                                    className="group-hover:filter-rotate-arrow"
-                                    ></ArrowDown>
-                                </button>
-                            </div>
-                            <div className="flex gap-[0.62rem] items-center justify-between h-fit">
-                                <Typography 
-                                variant="p"
-                                color="gray"
-                                font="outfit"
-                                className="filter-bar-after"
-                                >
-                                    Volume
-                                </Typography>
-                                <button
-                                className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
-                                onClick={ () => volumeClicked = true}
-                                >
-                                    <Typography
-                                    variant="p"
-                                    color="black"
-                                    font="outfit"
-                                    className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                    >
-                                        Tout
-                                    </Typography>
-                                    <ArrowDown
-                                    className="group-hover:filter-rotate-arrow"
-                                    ></ArrowDown>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
-                                <Typography 
-                                variant="p"
-                                color="gray"
-                                font="outfit"
-                                className="w-fit filter-bar-after"
-                                >
-                                    16 Résultat(s) Trouvé(s)
-                                </Typography>
-                                <button
-                                className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
-                                onClick={ () => {currentFilterVariant === "closed" ? setCurrentFilterVariant("all-filters") : setCurrentFilterVariant("closed")}}
-                                >
-                                    <Typography
-                                    variant="p"
-                                    color="black"
-                                    font="outfit"
-                                    className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
-                                    >
-                                        Filtres
-                                    </Typography>
-                                    <FilterIcon></FilterIcon>
-                                </button>
-                            </div>
+            >
+                <div
+                className="flex flex-row items-center justify-between gap-[2.81rem] w-fit h-fit">
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="filter-bar-after"
+                        >
+                            Trier par
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
+                        onClick={ () => {handleVariantChange("filter-by")}}
+                        >
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Nouveautés
+                            </Typography>
+                            <ArrowDown
+                            ></ArrowDown>
+                        </button>
                     </div>
-                    <div className="bg-white w-full h-fit py-[1.875rem] flex flex-row flex-wrap justify-between items-start">
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit max-sm:hidden">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="filter-bar-after"
+                        >
+                            Contenant
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]"
+                        onClick={ () => {handleVariantChange("contenant")}}
+                        >
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Tout
+                            </Typography>
+                            <ArrowDown
+                            className="group-hover:filter-rotate-arrow"
+                            ></ArrowDown>
+                        </button>
+                    </div>
+                    <div className="flex gap-[0.62rem] items-center justify-between h-fit max-md:hidden">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="filter-bar-after"
+                        >
+                            Volume
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.31rem]" 
+                        onClick={ () => {handleVariantChange("volume")}}
+                        >
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Tout
+                            </Typography>
+                            <ArrowDown
+                            className="group-hover:filter-rotate-arrow"
+                            ></ArrowDown>
+                        </button>
+                    </div>
+                </div>
+                <div className="flex gap-[0.62rem] items-center justify-between w-fit h-fit">
+                        <Typography 
+                        variant="p"
+                        color="gray"
+                        font="outfit"
+                        className="w-fit filter-bar-after"
+                        >
+                            16 Résultat(s) Trouvé(s)
+                        </Typography>
+                        <button
+                        className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
+                        onClick={ () => {handleVariantChange("all-filters")}}
+                        >
+                            <Typography
+                            variant="p"
+                            color="black"
+                            font="outfit"
+                            className={clsx(typoStyle, "max-sm:text-[0.875rem]",underlineAnimationBlack)}
+                            >
+                                Filtres
+                            </Typography>
+                            <FilterIcon></FilterIcon>
+                        </button>
+                    </div>
+            </div>
+                    <div className="bg-white w-full h-auto py-[1.875rem] flex flex-row flex-wrap justify-between items-start gap-y-1 group-last:border-none">
                         <FilterCard
                         title = "Trié par:"
                         list = {["Nouveautés", "Prix croissant", "Prix décroissant"]}
                         round = {true}
-                        className="border-r-[1px] border-solid border-r-black"
                         >
                         </FilterCard>
                         <FilterCard
                         title = "Contenant:"
                         list = {["Canette", "Bouteille"]}
-                        className="border-r-[1px] border-solid border-r-black"
                         >
                         </FilterCard>
                         <FilterCard
                         title = "Volume:"
                         list = {["25cl", "33cl", "50cl", "1L", "1.5L"]}
-                        className="border-r-[1px] border-solid border-r-black"
                         >
                         </FilterCard>
                         <FilterCard
                         title="Parfum:"
                         list={["Fruits rouges", "Orange sanguine", "Poire", "Fruit de la passion"]}
-                        className="border-r-[1px] border-solid border-r-black"
                         >
                         </FilterCard>
                         <FilterCard
@@ -788,7 +856,7 @@ export const FilterBar = ({
                         <div className="flex flex-row items-center justify-center gap-x-[0.3125rem] ml-[0.62rem]">
                             <button
                             className="group transition-all duration-300 ease-in-out w-fit flex items-center gap-[0.62rem]"
-                            onClick={() => closeClicked = true}
+                            onClick={ () => {handleVariantChange("closed")}}
                             >
                                 <Typography
                                 variant="p"
