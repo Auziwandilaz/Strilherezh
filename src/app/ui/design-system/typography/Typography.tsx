@@ -6,7 +6,7 @@ interface Props {
   color?: "white" | "black" | "gray" | "lightgray" | "gold";
   font?: "outfit" | "quicksand";
   className?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const Typography = ({
