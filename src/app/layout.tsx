@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 
 import "./globals.css";
-import HistoryPage from "./ui/components/historyPage/historyPage";
+import HistoryPage from "./ui/components/historyPage/HistoryPage";
 import AllProduct from "./ui/components/allProducts/AllProducts";
 import Home from "./page";
 
@@ -30,7 +30,7 @@ function App() {
                             element={<AllProduct />}
                         />
                         <Route
-                            path="/history" //route to all products page
+                            path="/history" //route to history page
                             element={<HistoryPage />}
                         />
                     </Routes>
